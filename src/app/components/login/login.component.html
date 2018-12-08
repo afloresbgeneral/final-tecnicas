@@ -1,23 +1,29 @@
 <div class="container content">
   <div class="row justify-content-md-center">
     <div class="col-4 box">
-            <form action="" class="" (ngSubmit)="onSubmit()" #login="ngForm">
+            <form action="" class="" (ngSubmit)="onSubmit()" #loginForm="ngForm">
              <div class="row">
               <div class="col-6">
                 <label>Usuario:</label>
               </div>
               <div class="col-6">
-                  <input type="text" class="input" required>
+                  <input type="text" name="userName" #userName="ngModel" [(ngModel)]="userModel.userName"  class="input" required>
+                  <span *ngIf="!userName.valid && userName.touched" class="is-required">
+                      El nombre de usuario es obligatorio
+                    </span>
               </div>
               <div class="col-6">
                 <label>Contraseña:</label>
               </div>
               <div class="col-6">
-                  <input type="text"  class="input" required>
+                  <input type="text" name="password" #password="ngModel" [(ngModel)]="userModel.password" class="input" required>
+                  <span *ngIf="!password.valid && password.touched" class="is-required">
+                      La contraseña es obligatoria
+                    </span>
               </div>
               <div class="col-12">
                   <button class="btn btn-outline-primary btn-lg btn-block outline"
-                  [disabled]="!login.form.valid" id="login-button" type="submit">Ingresar</button>
+                  [disabled]="!loginForm.form.valid" id="login-button" type="submit">Ingresar</button>
               </div>
             </div>
            </form>

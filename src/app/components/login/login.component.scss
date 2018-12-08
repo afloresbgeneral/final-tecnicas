@@ -1,5 +1,5 @@
 .content {
-    margin-top: 150px;
+    margin-top: 75px;
     position: relative;
 }
 
@@ -18,4 +18,14 @@
 
 .forgot-password {
     margin: auto;
+}
+
+.is-required {
+    font-size: 10px;
+    color: red;
+}
+
+button:disabled {
+    color:#717782;
+    border: 1px solid #717782;
 }
