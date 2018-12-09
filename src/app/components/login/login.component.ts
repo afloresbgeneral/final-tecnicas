@@ -13,7 +13,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public router: Router
   ) {
-    this.userModel  = new UserModel('', '', '', '', '', '' , 'ROLE_USER', '');
+    this.userModel  = new UserModel('', '', '', '', '', '', '' , 'ROLE_USER', '', '');
 
   }
 
@@ -21,7 +21,6 @@ export class LoginComponent implements OnInit {
   }
 
   onSubmit() {
-    console.log('submited');
     this.router.navigateByUrl('/home');
   }
 }

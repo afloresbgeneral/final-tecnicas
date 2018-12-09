@@ -1,0 +1,26 @@
+.content {
+    margin-top: 75px;
+    position: relative;
+}
+
+input {
+    width: 100%;
+}
+
+.is-required {
+    font-size: 10px;
+    color: red;
+}
+
+button {
+    margin-top: 20px;
+}
+
+button:disabled {
+    color:#717782;
+    border: 1px solid #717782;
+}
+
+.card-text {
+    padding: 15px;
+}

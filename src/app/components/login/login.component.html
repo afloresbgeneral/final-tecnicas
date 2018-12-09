@@ -4,19 +4,19 @@
             <form action="" class="" (ngSubmit)="onSubmit()" #loginForm="ngForm">
              <div class="row">
               <div class="col-6">
-                <label>Usuario:</label>
+                <label>Correo Institucional:</label>
               </div>
               <div class="col-6">
-                  <input type="text" name="userName" #userName="ngModel" [(ngModel)]="userModel.userName"  class="input" required>
-                  <span *ngIf="!userName.valid && userName.touched" class="is-required">
-                      El nombre de usuario es obligatorio
+                  <input type="text" name="email" #email="ngModel" [(ngModel)]="userModel.email"  class="input" required>
+                  <span *ngIf="!email.valid && email.touched" class="is-required">
+                      El correo es obligatorio
                     </span>
               </div>
               <div class="col-6">
                 <label>Contraseña:</label>
               </div>
               <div class="col-6">
-                  <input type="text" name="password" #password="ngModel" [(ngModel)]="userModel.password" class="input" required>
+                  <input type="password" name="password" #password="ngModel" [(ngModel)]="userModel.password" class="input" required>
                   <span *ngIf="!password.valid && password.touched" class="is-required">
                       La contraseña es obligatoria
                     </span>

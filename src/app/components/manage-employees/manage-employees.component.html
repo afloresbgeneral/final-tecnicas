@@ -1,0 +1,62 @@
+<div class="container content" *ngIf="!userFound">
+    <div class="row justify-content-md-center">
+      <div class="col-8 box">
+              <form action="" class="" (ngSubmit)="onSubmit()" #searchForm="ngForm">
+               <div class="row">
+                <div class="col-12">
+                  <label>Cédula del colaborador:</label>
+                </div>
+                <div class="col-12">
+                    <input type="text" name="id" #id="ngModel" [(ngModel)]="userModel.id"  class="input" required>
+                </div>
+                <div class="col-12">
+                    <span *ngIf="!id.valid && id.touched" class="is-required">
+                        La cédula es requerida
+                      </span>
+                </div>
+                <div class="col-12">
+                    <button class="btn btn-outline-primary btn-lg btn-block outline"
+                    [disabled]="!searchForm.form.valid" id="login-button" type="submit">Buscar colaborador</button>
+                </div>
+              </div>
+             </form>
+      </div>
+    </div>
+  </div>
+
+
+
+    <div *ngIf="userFound" class="container content">
+        <div class="card">
+            <div class="card-header">
+              Colaborador
+            </div>
+            <div class="card-body">
+              <h5 class="card-title">{{userFound.name}} {{userFound.lastName}}  </h5>
+              <div class="row">
+                <div class="col-6 card-text">
+                    <p class="card-text">Cédula: {{userFound.id}} </p>
+                    <p class="card-text">Correo: {{userFound.email}} </p>
+                    <p class="card-text">Departamento: {{userFound.department}} </p>
+                </div>
+                <div class="col-6 card-text">
+                    <p class="card-text">Rol: {{userFound.role}} </p>
+                    <p class="card-text">Contraseña: {{userFound.password}} </p>
+                </div>
+              </div>
+
+              <div class="row justify-content-start">
+                  <div class="col-4">
+                      <a href="#" class="btn btn-primary">Renovar Contraseña</a>
+                    </div>
+                  <div class="col-4">
+                      <a href="#" class="btn btn-danger">Borrar colaborador</a>
+                    </div>
+                </div>
+            </div>
+          </div>
+      </div>
+
+
+  
+  
