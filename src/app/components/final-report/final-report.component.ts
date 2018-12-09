@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { UserModel } from '../../models/user.model';
+import { UserService } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-final-report',
@@ -7,9 +10,19 @@ import { Component, OnInit } from '@angular/core';
 })
 export class FinalReportComponent implements OnInit {
 
-  constructor() { }
+  public users: Array<UserModel> = [];
+
+  constructor( public userService: UserService,
+                public router: Router) {
+    this.users = userService.getUsers();
+    console.log(this.users);
+   }
 
   ngOnInit() {
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/home');
   }
 
 }

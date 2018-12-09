@@ -9,6 +9,7 @@ export class UserModel {
         public password: string,
         public role: string,
         public image: string,
-        public department: string
+        public department: string,
+        public courseStatus: string
     ) {}
 }

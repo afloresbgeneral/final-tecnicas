@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../models/user.model';
 import { Router } from '@angular/router';
+import { UserService } from '../services/user.service';
 
 @Component({
   selector: 'app-manage-password',
@@ -13,15 +14,16 @@ export class ManagePasswordComponent implements OnInit {
 
   userModel: UserModel;
 
-  constructor(public router: Router) {
-    this.userModel  = new UserModel('', '', '', '', '', '', '' , 'ROLE_USER', '', '');
+  constructor(public router: Router,
+              public userService: UserService) {
+    this.userModel  = new UserModel('', '', '', '', '', '', '' , 'ROLE_USER', '', '', '');
   }
 
   ngOnInit() {
   }
 
   onSubmit() {
-    console.log(this.userModel);
+    this.userService.createUser(this.userModel);
   }
 
   goBack() {

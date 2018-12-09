@@ -11,10 +11,11 @@ import { UserService } from '../services/user.service';
 export class ManageEmployeesComponent implements OnInit {
   userModel: UserModel;
   userFound: UserModel;
+  userExist = true;
 
   constructor(public router: Router,
               public userService: UserService) {
-    this.userModel  = new UserModel('', '', '', '', '', '', '' , '', '', '');
+    this.userModel  = new UserModel('', '', '', '', '', '', '' , '', '', '', '');
 
   }
 
@@ -23,7 +24,14 @@ export class ManageEmployeesComponent implements OnInit {
 
   onSubmit() {
     this.userFound = this.userService.getUser(this.userModel.id);
+    if (!this.userFound) {
+      this.userExist = false;
+    }
     console.log(this.userFound);
+  }
+
+  goBack() {
+    this.router.navigateByUrl('/home');
   }
 
 }

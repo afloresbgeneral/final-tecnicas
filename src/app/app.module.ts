@@ -11,7 +11,6 @@ import { FinalReportComponent } from './components/final-report/final-report.com
 import { ManagePasswordComponent } from './components/manage-password/manage-password.component';
 import { ManageReportComponent } from './components/manage-report/manage-report.component';
 import { ManageEmployeesComponent } from './components/manage-employees/manage-employees.component';
-import { EmployeeProfileComponent } from './components/components/employee-profile/employee-profile.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { UserService } from './components/services/user.service';
 
@@ -25,8 +24,7 @@ import { UserService } from './components/services/user.service';
     FinalReportComponent,
     ManagePasswordComponent,
     ManageEmployeesComponent,
-    ManageReportComponent,
-    EmployeeProfileComponent
+    ManageReportComponent
   ],
   imports: [
     FormsModule,

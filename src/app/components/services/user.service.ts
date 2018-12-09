@@ -18,32 +18,61 @@ export class UserService {
         name: 'Anthony',
         lastName: 'Flores',
         email: 'anthony.flores@utp.ac.pa',
-        password: '111',
+        password: 'jmj',
         role: 'user',
         image: 'string',
-        department: 'Chofer'
+        department: 'Chofer',
+        courseStatus: 'Aprobado'
       }, {
         userName: 'juliantz',
         _id: 'string',
-        id: '2-22-22',
+        id: '222',
         name: 'edgar',
         lastName: 'Tuberquia',
         email: 'edgar.tuberquia@utp.ac.pa',
-        password: '333',
+        password: 'ganzo',
         role: 'user',
         image: 'string',
-        department: 'Cocina'
+        department: 'Cocina',
+        courseStatus: 'Aprobado'
+
       }, {
         userName: 'marioelias',
         _id: 'string',
-        id: '222',
-        name: 'mario',
+        id: '333',
+        name: 'Mario',
         lastName: 'Montenegro',
         email: 'mario.montenegro@utp.ac.pa',
-        password: 'string',
+        password: 'sara',
         role: 'user',
         image: 'string',
-        department: 'Amo de casa'
+        department: 'Amo de casa',
+        courseStatus: 'Reprobado'
+      },  {
+        userName: 'Juank',
+        _id: 'string',
+        id: '444',
+        name: 'Juan',
+        lastName: 'Castro',
+        email: 'juan.castro@utp.ac.pa',
+        password: 'fotosintesis',
+        role: 'user',
+        image: 'string',
+        department: 'Leyes',
+        courseStatus: 'Pendiente'
+      } , {
+        userName: 'Mariok',
+        _id: 'string',
+        id: '555',
+        name: 'Mario',
+        lastName: 'kirven',
+        email: 'mario.kirven@utp.ac.pa',
+        password: 'tavivo?',
+        role: 'user',
+        image: 'string',
+        department: 'chistes',
+        courseStatus: 'Pendiente'
+
       }
     ];
 
@@ -62,6 +91,10 @@ export class UserService {
       const user: UserModel = this.users
                                   .find((u: UserModel) => u.id === id);
       return user;
+  }
+
+  createUser(user: UserModel) {
+      console.log(user, 'creando usuario desde el servicio');
   }
 
 }
