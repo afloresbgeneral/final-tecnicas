@@ -13,7 +13,10 @@ import { ManageReportComponent } from './components/manage-report/manage-report.
 import { ManageEmployeesComponent } from './components/manage-employees/manage-employees.component';
 import { HttpClientModule } from '../../node_modules/@angular/common/http';
 import { UserService } from './components/services/user.service';
-
+import { ApplyTestComponent } from './components/apply-test/apply-test.component';
+import { AngularFireModule } from 'angularfire2';
+import { firebaseConfig } from '../environments/firebase.config';
+import { AngularFireDatabaseModule } from 'angularfire2/database';
 
 @NgModule({
   declarations: [
@@ -24,13 +27,16 @@ import { UserService } from './components/services/user.service';
     FinalReportComponent,
     ManagePasswordComponent,
     ManageEmployeesComponent,
-    ManageReportComponent
+    ManageReportComponent,
+    ApplyTestComponent
   ],
   imports: [
     FormsModule,
     BrowserModule,
     HttpClientModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AngularFireModule.initializeApp(firebaseConfig),
+    AngularFireDatabaseModule
   ],
   providers: [
     UserService

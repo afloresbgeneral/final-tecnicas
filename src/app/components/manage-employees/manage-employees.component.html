@@ -1,4 +1,4 @@
-<div class="container content" *ngIf="!userFound">
+<div class="container content" *ngIf="!userExist">
     <div class="row justify-content-md-center">
         <div class="col-8 box">
             <form action="" class="" (ngSubmit)="onSubmit()" #searchForm="ngForm">
@@ -29,7 +29,7 @@
 
 
 
-<div *ngIf="userFound" class="container content">
+<div *ngIf="userExist" class="container content">
     <div class="card">
         <div class="card-header">
             Colaborador
@@ -45,18 +45,23 @@
                 <div class="col-6 card-text">
                     <p class="card-text">Rol: {{userFound.role}} </p>
                     <p class="card-text">Contraseña: {{userFound.password}} </p>
+                    <p class="card-text">Estado de prueba: {{userFound.courseStatus}} </p>
                 </div>
             </div>
 
             <div class="row justify-content-start">
                 <div class="col-4">
-                    <button class="btn btn-primary" (click)="goBack()">Renovar Contraseña</button>
+                    <button class="btn btn-primary" (click)="renewPassword()">Renovar Contraseña</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-danger" (click)="goBack()">Borrar Colaborador</button>
                 </div>
                 <div class="col-4">
                     <button class="btn btn-danger" (click)="goBack()">Regresar</button>
+                </div>
+
+                <div [hidden]="userFound.courseStatus==='Aprobado' || userFound.courseStatus==='Reprobado'" class="col-4">
+                    <button class="btn btn-danger" (click)="goBack()">Aplicar Prueba</button>
                 </div>
             </div>
         </div>

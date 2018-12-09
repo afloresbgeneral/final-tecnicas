@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { UserModel } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
+import { AngularFireDatabase } from '../../../../node_modules/angularfire2/database';
 
 @Component({
   selector: 'app-manage-password',
@@ -15,7 +16,8 @@ export class ManagePasswordComponent implements OnInit {
   userModel: UserModel;
 
   constructor(public router: Router,
-              public userService: UserService) {
+              public userService: UserService,
+              public angularFireDataBase: AngularFireDatabase) {
     this.userModel  = new UserModel('', '', '', '', '', '', '' , 'ROLE_USER', '', '', '');
   }
 
@@ -23,11 +25,25 @@ export class ManagePasswordComponent implements OnInit {
   }
 
   onSubmit() {
-    this.userService.createUser(this.userModel);
+  //  this.userService.createUser(this.userModel);
+  this.userModel.password = this.randomPassword(10);
+  this.userModel.courseStatus = 'Pendiente';
+  this.angularFireDataBase.list('/user').push(this.userModel);
+
   }
 
   goBack() {
     this.router.navigateByUrl('/home');
   }
+
+   randomPassword(length) {
+    const chars = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890';
+    let pass = '';
+    for (let x = 0; x < length; x++) {
+        const i = Math.floor(Math.random() * chars.length);
+        pass += chars.charAt(i);
+    }
+    return pass;
+}
 
 }
