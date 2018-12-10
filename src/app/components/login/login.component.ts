@@ -4,7 +4,7 @@ import { UserModel } from '../../models/user.model';
 import { AngularFireDatabase } from '../../../../node_modules/angularfire2/database';
 import { Observable } from '../../../../node_modules/rxjs';
 import { UserService } from '../services/user.service';
-
+import 'rxjs/add/operator/take';
 
 @Component({
   selector: 'app-login',
@@ -25,7 +25,7 @@ export class LoginComponent implements OnInit {
   ) {
 
 
-  this.users = angularFireDataBase.list('/user').valueChanges().subscribe(user => {
+  this.users = angularFireDataBase.list('/user').valueChanges().take(1).subscribe(user => {
     this.users = user;
     console.log(this.users, 'Usuarios desde firebase');
   });

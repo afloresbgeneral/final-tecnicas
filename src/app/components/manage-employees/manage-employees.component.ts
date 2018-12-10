@@ -17,6 +17,7 @@ export class ManageEmployeesComponent implements OnInit {
   userExist = true;
   showProfile = false;
   prubaList: AngularFireList<any>;
+  paths = 'user/';
 
   constructor(public router: Router,
               public userService: UserService,
@@ -29,14 +30,12 @@ export class ManageEmployeesComponent implements OnInit {
   }
 
   onSubmit() {
+    const self = this;
     this.angularFireDataBase.list('/user', ref => ref.orderByChild('id').equalTo(this.userModel.id))
                .valueChanges().take(1).subscribe(user => {
                     this.userFound = user[0];
-                      console.log(user.length, 'serrr');
                     if (user.length === 0) {
                       this.userExist = false;
-                      console.log('userexist', this.userExist)
-
                     } else {
                       this.userExist = true;
                       this.showProfile = true;
@@ -44,20 +43,27 @@ export class ManageEmployeesComponent implements OnInit {
                  }, error => {
                    console.log(error);
                  });
+
+                 //obteniendo path
+                 let userKey = '';
+                 this.angularFireDataBase.database.ref('/user/')
+                   .orderByChild('id')
+                   .equalTo(this.userModel.id)
+                   .once('value', function(snapshot) {
+                    userKey = Object.keys(snapshot.val())[0];
+                    console.log(userKey, 'userKey');
+                    console.log(self.paths);
+                    self.paths = self.paths.concat(userKey);
+                    console.log(self.paths, 'el path');
+                 });
+                 //obteniendo path
   }
 
   renewPassword() {
-  let userKey = '';
-         this.angularFireDataBase.database.ref('/user/')
-           .orderByChild('id')
-           .equalTo(this.userModel.id)
-           .once('value', function(snapshot) {
-            userKey = Object.keys(snapshot.val())[0];
-         });
-         this.angularFireDataBase.database.ref('user/' + userKey).update({
+
+         this.angularFireDataBase.database.ref(this.paths).update({
           password: this.userService.randomPassword()
       });
-
       this.userService.toastMessage('Aviso', 'Se ha restaurado la contraseña correctamente');
 
   }
