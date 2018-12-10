@@ -1,4 +1,4 @@
-<div class="container content" *ngIf="!userExist">
+<div class="container content" *ngIf="!showProfile">
     <div class="row justify-content-md-center">
         <div class="col-8 box">
             <form action="" class="" (ngSubmit)="onSubmit()" #searchForm="ngForm">
@@ -29,7 +29,7 @@
 
 
 
-<div *ngIf="userExist" class="container content">
+<div *ngIf="showProfile" class="container content">
     <div class="card">
         <div class="card-header">
             Colaborador

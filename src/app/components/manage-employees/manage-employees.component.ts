@@ -3,6 +3,8 @@ import { UserModel } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AngularFireDatabase, AngularFireList } from '../../../../node_modules/angularfire2/database';
+import 'rxjs/add/operator/take';
+
 
 @Component({
   selector: 'app-manage-employees',
@@ -12,7 +14,8 @@ import { AngularFireDatabase, AngularFireList } from '../../../../node_modules/a
 export class ManageEmployeesComponent implements OnInit {
   userModel: UserModel;
   userFound: any;
-  userExist = false;
+  userExist = true;
+  showProfile = false;
   prubaList: AngularFireList<any>;
 
   constructor(public router: Router,
@@ -26,16 +29,20 @@ export class ManageEmployeesComponent implements OnInit {
   }
 
   onSubmit() {
-    //this.userFound = this.userService.getUser(this.userModel.id);
     this.angularFireDataBase.list('/user', ref => ref.orderByChild('id').equalTo(this.userModel.id))
-               .valueChanges().subscribe(user => {
+               .valueChanges().take(1).subscribe(user => {
                     this.userFound = user[0];
-
-                    if ( this.userFound.length === 0) {
+                      console.log(user.length, 'serrr');
+                    if (user.length === 0) {
                       this.userExist = false;
+                      console.log('userexist', this.userExist)
+
                     } else {
                       this.userExist = true;
+                      this.showProfile = true;
                     }
+                 }, error => {
+                   console.log(error);
                  });
   }
 

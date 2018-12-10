@@ -1,9 +1,9 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
-  <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a> 
-  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+    <a [routerLink]="['/home']" class="navbar-brand">{{title}}</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
+    <div class="collapse navbar-collapse container-fluid" id="navbarNavAltMarkup">
         <ul class="nav navbar-nav ">
             <!-- <li><a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLink]="['/home']">Home</a></li>
             <li><a class="nav-item nav-link" [routerLinkActive]="['active']"  [routerLink]="['/animals']">Animals</a></li>
@@ -12,16 +12,16 @@
             <li><a class="nav-item nav-link" [routerLinkActive]="['active']"  [routerLink]="['/tienda']">Store</a></li>  -->
         </ul>
         <ul class="nav navbar-nav navbar-right">
-          <li><a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLink]="['/register']">Register</a></li>
-          <li><a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLink]="['/login']">Login</a></li>
+            <li><a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLink]="['/register']">Register</a></li>
+            <li><a class="nav-item nav-link" [routerLinkActive]="['active']" [routerLink]="['/login']">Login</a></li>
         </ul>
-  </div>
+    </div>
 </nav>
 
 <!-- <button name="btn">Click</button> -->
 
 <!-- <div style="border:1px solid #555;border-radius:3px;color:white;background:#555;height:105px;width:260px;position:relative; margin-top:10px">jQuery</div> -->
 <div class="content col-lg-11">
-<router-outlet></router-outlet>
+    <router-outlet></router-outlet>
 </div>
 <app-footer></app-footer>
