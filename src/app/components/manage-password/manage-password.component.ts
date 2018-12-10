@@ -26,7 +26,7 @@ export class ManagePasswordComponent implements OnInit {
 
   onSubmit() {
   //  this.userService.createUser(this.userModel);
-  this.userModel.password = this.randomPassword(10);
+  this.userModel.password = this.randomPassword();
   this.userModel.courseStatus = 'Pendiente';
   this.angularFireDataBase.list('/user').push(this.userModel);
 
@@ -36,7 +36,8 @@ export class ManagePasswordComponent implements OnInit {
     this.router.navigateByUrl('/home');
   }
 
-   randomPassword(length) {
+   randomPassword() {
+    const length = 10;
     const chars = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890';
     let pass = '';
     for (let x = 0; x < length; x++) {

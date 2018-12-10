@@ -109,4 +109,15 @@ export class UserService {
       console.log(user, 'creando usuario desde el servicio');
   }
 
+  randomPassword() {
+    const length = 10;
+    const chars = 'abcdefghijklmnopqrstuvwxyz!@#$%^&*()-+<>ABCDEFGHIJKLMNOP1234567890';
+    let pass = '';
+    for (let x = 0; x < length; x++) {
+        const i = Math.floor(Math.random() * chars.length);
+        pass += chars.charAt(i);
+    }
+    return pass;
+}
+
 }
