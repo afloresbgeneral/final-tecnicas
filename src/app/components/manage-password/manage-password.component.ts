@@ -3,6 +3,9 @@ import { UserModel } from '../../models/user.model';
 import { Router } from '@angular/router';
 import { UserService } from '../services/user.service';
 import { AngularFireDatabase } from '../../../../node_modules/angularfire2/database';
+import 'rxjs/add/operator/take';
+import { Observable } from '../../../../node_modules/rxjs';
+
 
 @Component({
   selector: 'app-manage-password',
@@ -14,6 +17,9 @@ export class ManagePasswordComponent implements OnInit {
   'Docencia', 'Administrativo'];
 
   userModel: UserModel;
+  userFound: any;
+  userExist = false;
+
 
   constructor(public router: Router,
               public userService: UserService,
@@ -24,21 +30,22 @@ export class ManagePasswordComponent implements OnInit {
   ngOnInit() {
   }
 
+
+
   onSubmit() {
-  //  this.userService.createUser(this.userModel);
-
-
-
-
-  this.userModel.password = this.randomPassword();
-  this.userModel.courseStatus = 'Pendiente';
-  this.angularFireDataBase.list('/user').push(this.userModel);
-
-
-
-  this.userService.toastMessage('Aviso', 'Usuario creado correctamente');
-
-  }
+    this.angularFireDataBase.list('/user', ref => ref.orderByChild('id').equalTo(this.userModel.id))
+    .valueChanges().take(1).subscribe(user => {
+         this.userFound = user[0];
+         if ( !this.userFound) {
+          this.userModel.password = this.randomPassword();
+          this.userModel.courseStatus = 'Pendiente';
+          this.angularFireDataBase.list('/user').push(this.userModel);
+          this.userService.toastMessage('Aviso', 'Usuario creado correctamente');
+         } else if ( this.userFound) {
+          this.userService.toastErrorMessage('Error', 'El usuario ya existe en el sistema');
+         }
+      });
+    }
 
   goBack() {
     this.router.navigateByUrl('/home');
