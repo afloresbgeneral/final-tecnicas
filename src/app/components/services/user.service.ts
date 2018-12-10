@@ -5,6 +5,7 @@ import {Observable} from 'rxjs/Observable';
 import { GLOBAL } from './global';
 import { UserModel } from '../../models/user.model';
 import { AngularFireDatabase } from '../../../../node_modules/angularfire2/database';
+import { ToastrService } from '../../../../node_modules/ngx-toastr';
 
 @Injectable({
   providedIn: 'root'
@@ -14,75 +15,9 @@ export class UserService {
    users: any;
   // public users: Array<UserModel> = [];
 
-
-  // public users: Array<UserModel> = [
-  //     {
-  //       userName: 'tonyhero',
-  //       _id: 'string',
-  //       id: '111',
-  //       name: 'Anthony',
-  //       lastName: 'Flores',
-  //       email: 'anthony.flores@utp.ac.pa',
-  //       password: 'jmj',
-  //       role: 'user',
-  //       image: 'string',
-  //       department: 'Chofer',
-  //       courseStatus: 'Aprobado'
-  //     }, {
-  //       userName: 'juliantz',
-  //       _id: 'string',
-  //       id: '222',
-  //       name: 'edgar',
-  //       lastName: 'Tuberquia',
-  //       email: 'edgar.tuberquia@utp.ac.pa',
-  //       password: 'ganzo',
-  //       role: 'user',
-  //       image: 'string',
-  //       department: 'Cocina',
-  //       courseStatus: 'Aprobado'
-
-  //     }, {
-  //       userName: 'marioelias',
-  //       _id: 'string',
-  //       id: '333',
-  //       name: 'Mario',
-  //       lastName: 'Montenegro',
-  //       email: 'mario.montenegro@utp.ac.pa',
-  //       password: 'sara',
-  //       role: 'user',
-  //       image: 'string',
-  //       department: 'Amo de casa',
-  //       courseStatus: 'Reprobado'
-  //     },  {
-  //       userName: 'Juank',
-  //       _id: 'string',
-  //       id: '444',
-  //       name: 'Juan',
-  //       lastName: 'Castro',
-  //       email: 'juan.castro@utp.ac.pa',
-  //       password: 'fotosintesis',
-  //       role: 'user',
-  //       image: 'string',
-  //       department: 'Leyes',
-  //       courseStatus: 'Pendiente'
-  //     } , {
-  //       userName: 'Mariok',
-  //       _id: 'string',
-  //       id: '555',
-  //       name: 'Mario',
-  //       lastName: 'kirven',
-  //       email: 'mario.kirven@utp.ac.pa',
-  //       password: 'tavivo?',
-  //       role: 'user',
-  //       image: 'string',
-  //       department: 'chistes',
-  //       courseStatus: 'Pendiente'
-
-  //     }
-  //   ];
-
   constructor(private _http: HttpClient,
-              public angularFireDataBase: AngularFireDatabase
+              public angularFireDataBase: AngularFireDatabase,
+              public toastrService: ToastrService,
   ) {
       this.url = GLOBAL.url;
   }
@@ -119,5 +54,17 @@ export class UserService {
     }
     return pass;
 }
+
+ toastMessage(title: string, message: string) {
+  this.toastrService.success(message, title, {
+    positionClass: 'toast-top-left'
+  });
+ }
+
+ toastErrorMessage(title: string, message: string) {
+  this.toastrService.error(message, title, {
+    positionClass: 'toast-top-left'
+  });
+ }
 
 }

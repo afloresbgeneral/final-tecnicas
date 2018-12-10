@@ -26,9 +26,17 @@ export class ManagePasswordComponent implements OnInit {
 
   onSubmit() {
   //  this.userService.createUser(this.userModel);
+
+
+
+
   this.userModel.password = this.randomPassword();
   this.userModel.courseStatus = 'Pendiente';
   this.angularFireDataBase.list('/user').push(this.userModel);
+
+
+
+  this.userService.toastMessage('Aviso', 'Usuario creado correctamente');
 
   }
 

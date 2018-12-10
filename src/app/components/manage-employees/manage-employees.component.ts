@@ -50,6 +50,9 @@ export class ManageEmployeesComponent implements OnInit {
          this.angularFireDataBase.database.ref('user/' + userKey).update({
           password: this.userService.randomPassword()
       });
+
+      this.userService.toastMessage('Aviso', 'Se ha restaurado la contraseña correctamente');
+
   }
 
   goBack() {

@@ -17,6 +17,12 @@ import { ApplyTestComponent } from './components/apply-test/apply-test.component
 import { AngularFireModule } from 'angularfire2';
 import { firebaseConfig } from '../environments/firebase.config';
 import { AngularFireDatabaseModule } from 'angularfire2/database';
+import { ToastrModule } from 'ngx-toastr';
+import {NoopAnimationsModule} from '@angular/platform-browser/animations';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+
+
+
 
 @NgModule({
   declarations: [
@@ -36,7 +42,9 @@ import { AngularFireDatabaseModule } from 'angularfire2/database';
     HttpClientModule,
     AppRoutingModule,
     AngularFireModule.initializeApp(firebaseConfig),
-    AngularFireDatabaseModule
+    AngularFireDatabaseModule,
+    BrowserAnimationsModule,
+    ToastrModule.forRoot()
   ],
   providers: [
     UserService
